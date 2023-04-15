@@ -13,6 +13,12 @@ from code_source.yt_dlp.extractor.facebook import FacebookIE, FacebookReelIE
 from code_source.yt_dlp.extractor.dailymotion import DailymotionIE
 from code_source.yt_dlp.extractor.formula1 import Formula1IE
 from code_source.yt_dlp.extractor.nintendo import NintendoIE
+from code_source.yt_dlp.extractor.googledrive import GoogleDriveIE
+from code_source.yt_dlp.extractor.reddit import RedditIE
+from code_source.yt_dlp.extractor.tiktok import TikTokIE
+from code_source.yt_dlp.extractor.deezer import DeezerAlbumIE,DeezerPlaylistIE
+from code_source.yt_dlp.extractor.amazon import AmazonStoreIE,AmazonReviewsIE
+from code_source.yt_dlp.extractor.eurosport import EurosportIE
 
 
 class VimeoRegexTest(unittest.TestCase):
@@ -47,6 +53,29 @@ class VimeoRegexTest(unittest.TestCase):
         ("https://www.nintendo.com/nintendo-direct/03-09-2023", NintendoIE._VALID_URL),
         # erreur susceptible de Facebook
         ("https://m.facebook.com/stories/view_tray_pagination/1694351550654428/?tray_session_id=f3f6199a-d2d4-4d88-9906-1a47834e22f1&thread_id=782399996346255&end_cursor=MTAwMDA5NzcwNjQ5NTQyOjE6MTY4MTU1NTM5MDoxNjg3MTY5Njc5NTQzODE6LTE6Y2xuOjI5OTc0MjQwOTA5NjA0MTc4NTM6MDoxNjgxNTU1MzkwOg%3D%3D&has_next_page=false", FacebookIE._VALID_URL),
+        ("https://drive.google.com/file/d/1BiLl5grkxDNXVUvkBJanA-0d_Q0sfUBT/view/",GoogleDriveIE._VALID_URL),
+        ("https://drive.google.com/file/d/1BiLl5grkxDNXVUvkBJanA-0d_Q0sfUBT/view",GoogleDriveIE._VALID_URL),
+        ("https://drive.google.com/file/d/1BiLl5grkxDNXVUvkBJanA-0d_Q0sfUBT/youyou",GoogleDriveIE._VALID_URL),
+        ("https://drive.google.com/file/d/1BiLl5grkxDNXVUvkBJanA-0d_Q0sfUBT",GoogleDriveIE._VALID_URL),
+        ("https://www.tiktok.com/@reussironly/video/7221968120259366150?is_from_webapp=1&sender_device=pc",TikTokIE._VALID_URL),
+        ("https://www.tiktok.com/@reussironly/video/7221968120259366150a",TikTokIE._VALID_URL),
+        ("https://www.tiktok.com/@reussironly/video/7221968120259366150/",TikTokIE._VALID_URL),
+        ("https://www.deezer.com/fr/album/350891827",DeezerAlbumIE._VALID_URL),
+        ("https://www.deezer.com/fr/album/350891827/",DeezerAlbumIE._VALID_URL),
+        ("https://www.deezer.com/XX/album/350891827",DeezerAlbumIE._VALID_URL),
+        ("https://www.deezer.com////album/350891827",DeezerAlbumIE._VALID_URL),
+        ("https://www.deezer.com/fr/playlist/10783752422",DeezerPlaylistIE._VALID_URL),
+        ("https://www.deezer.com/&#/playlist/10783752422",DeezerPlaylistIE._VALID_URL),
+        ("https://www.deezer.com/fr/playlist/10783752422/",DeezerPlaylistIE._VALID_URL),
+        ("https://www.amazon.aaa.bb/dp/B098XNCHLD/?th=1",AmazonStoreIE._VALID_URL),
+        ("https://www.amazon.aaa.bb/dp/B098XNCHLD###&&&",AmazonStoreIE._VALID_URL),
+        ("https://www.amazon.com/gp/customer-reviews/R10VE9VUSY19L3/ref=cm_cr_arp_d_rvw_ttl",AmazonReviewsIE._VALID_URL),
+        ("https://www.amazon.com/gp/customer-reviews/R10VE9VUSY19L3##&&",AmazonReviewsIE._VALID_URL),
+        ("https://www.reddit.com/r/interestingasfuck/comments/12mjhdz/worst_pain_known_to_man/",RedditIE._VALID_URL),
+        ("https://www.reddit.com/r/interestingasfuck/comments/12mjhdz#",RedditIE._VALID_URL),
+        #erreur eurosport
+        ("https://www.eurosport.com/football/champions-league/2022-2023/pep-guardiola-emotionally-destroyed-after-manchester-city-win-over-bayern-munich-in-champions-league_vid1896254/video.shtml",EurosportIE._VALID_URL),
+        ("https://www.eurosport.com/football/champions-league/20222023/pep-guardiola-emotionally-destroyed-after-manchester-city-win-over-bayern-munich-in-champions-league_vid1896254",EurosportIE._VALID_URL),
     ]
     
     def test_regex(self): 
