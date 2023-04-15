@@ -10,18 +10,21 @@ from code_source.yt_dlp.extractor.vimeo import VimeoIE
 
 
 class VimeoRegexTest(unittest.TestCase):
-    def test_vimeo_regex(self):
-        urls = [
-            "https://player.vimeo.com/video/54469442",
-            "https://player.vimeo.com/video/54469442/",
-        ]
+    
+    # Define test data as tuples of (regex, url)
+    test_data = [
+        ("https://player.vimeo.com/video/54469442", VimeoIE._VALID_URL),
+        ("https://player.vimeo.com/video/54469442/", VimeoIE._VALID_URL),
+        
+    ]
+    
+    def test_regex(self): 
+        for url, regex in self.test_data:
+            with self.subTest(url=url):
+                match = re.match(regex, url)
+                self.assertIsNotNone(match, f"The URL {url} is invalid")
 
-        # Test les URL valides
-        for valid_urls in urls:
-            match = re.match(VimeoIE._VALID_URL, valid_urls)
-            self.assertIsNotNone(match, f"The URL {valid_urls} is invalid")
 
-       
-
+    
 if __name__ == '__main__':
     unittest.main()
