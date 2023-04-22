@@ -9,9 +9,6 @@ inputs = [
     "https://player.vimeo.com/video/54469442",
     "https://player.vimeo.com/video/54469442/",
 
-    # "https://player.vimeo.com/video/54469442", Regex_Extractors._VALID_URL),
-    # "https://player.vimeo.com/video/54469442/", Regex_Extractors._VALID_URL),
-
     "https://watch.pokemon.com/fr-fr/#/player?id=c0d71edb6ec243ae94718327637ac46c/",
     "https://watch.pokemon.com/fr-fr/#/player?id=c0d71edb6ec243ae94718327637ac46c/test",
     "https://watch.pokemon.com/fr-fr/#/player?id=c0d71edb6ec243ae94718327637ac46c",
