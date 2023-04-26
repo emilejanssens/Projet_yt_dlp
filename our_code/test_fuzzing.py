@@ -5,8 +5,7 @@ import string
 # Nombre d'itérations pour tester le programme
 num_iter = 10
 
-# Fonctions pour générer une URL aléatoire
-
+# Fonction pour générer une URL aléatoire
 def generate_url(id_size, str_url):
     # Générer un identifiant vidéo YouTube aléatoire
     video_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(id_size))
