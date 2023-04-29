@@ -3,7 +3,7 @@ import random
 import string
 
 # Nombre d'itérations pour tester le programme
-num_iter = 10
+num_iter = 100
 
 # Fonction pour générer une URL aléatoire
 def generate_url(id_size, str_url):
