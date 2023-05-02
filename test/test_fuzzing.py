@@ -90,9 +90,10 @@ with open('logs.txt', 'a') as f:
         
         print(f"Iter : {i}")
         
-        message = f"No mutated url : {url} [{type_mutation}]" 
+        message = f"No mutated url : {url} > [{type_mutation}] > Muted url : {mutated_url}" 
         print(message) 
         f.write(message + "\n")
+        
             
         try:
             output = subprocess.check_output(COMMAND.format(
