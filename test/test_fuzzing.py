@@ -90,7 +90,7 @@ with open('logs.txt', 'a') as f:
         
         print(f"Iter : {i}")
         
-        message = f"No mutated url : {url} > [{type_mutation}] > Muted url : {mutated_url}" 
+        message = f"No mutated url : {url} > [{type_mutation}] > Mutated url : {mutated_url}" 
         print(message) 
         f.write(message + "\n")
         
