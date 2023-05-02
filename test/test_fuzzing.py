@@ -92,7 +92,7 @@ with open('logs.txt', 'a') as f:
         
         message = f"No mutated url : {url} [{type_mutation}]" 
         print(message) 
-        f.write(message)
+        f.write(message + "\n")
             
         try:
             output = subprocess.check_output(COMMAND.format(
@@ -104,7 +104,7 @@ with open('logs.txt', 'a') as f:
 
         except subprocess.CalledProcessError as e:
             
-            message = f"Command succeeded with input: {mutated_url}\n{e.output}\n"
+            message = f"Command failed with input: {mutated_url}\n{e.output}\n"
             print(message)
             
         f.write(message + "\n")
