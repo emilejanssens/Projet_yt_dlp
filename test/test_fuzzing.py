@@ -2,19 +2,38 @@ import subprocess
 import random
 import string
 
-# Nombre d'itérations pour tester le programme
+# Number of iterations
 num_iter = 100
 
-# Fonction pour générer une URL aléatoire
 def generate_url(id_size, str_url):
-    # Générer un identifiant vidéo YouTube aléatoire
+    """Generate a random url
+    Parameters
+    ----------
+    id_size : size of the id (int)
+    str_url : url string (str)
+    
+    Returns
+    -------
+    an random url (str)
+    """
+    # Generate a random YouTube video ID
     video_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(id_size))
     
     return str_url + video_id
     
     
-# Fonction pour muter une URL
 def mutate_url(url):
+    """Mutation of an url
+    
+    Parameters
+    ----------
+    url : url to mutate (str)
+    
+    Returns
+    -------
+    type_mutation : type of mutation (str)
+    mutated_url : mutated url (str)
+    """
     # Convertir l'URL en une liste de caractères pour pouvoir la modifier
     url_list = list(url)
     
@@ -53,30 +72,39 @@ def mutate_url(url):
 
 COMMAND = "yt-dlp {} -P ./trash"
 
-for i in range(num_iter):
-    
-    # Générer une URL aléatoire
-    url = random.choice([generate_url(11, "https://www.youtube.com/watch?v="),
-                         generate_url(8, "https://player.vimeo.com/video/"),
-                         generate_url(7, "https://www.dailymotion.com/video/"),
-                         generate_url(9, "https://www.deezer.com/fr/album/"),
-                         generate_url(11, "https://youtu.be/"),
-                         generate_url(14, "https://www.amazon.com/gp/customer-reviews/"),
-                         generate_url(20, "https://www.tiktok.com/@reussironly/video/"),
-                         ])
-
-    # Muter l'URL aléatoire
-    type_mutation, mutated_url = mutate_url(url)
-    
-    print(f"No mutated url : {url} [{type_mutation}]")
+with open('logs.txt', 'a') as f:
+    for i in range(num_iter):
         
-    try:
-        output = subprocess.check_output(COMMAND.format(
-            mutated_url), shell=True, stderr=subprocess.STDOUT)
-        print(f"Command succeeded with input: {mutated_url}\n")
-        # print(output)
+        # Generate a random URL
+        url = random.choice([generate_url(11, "https://www.youtube.com/watch?v="),
+                            generate_url(8, "https://player.vimeo.com/video/"),
+                            generate_url(7, "https://www.dailymotion.com/video/"),
+                            generate_url(9, "https://www.deezer.com/fr/album/"),
+                            generate_url(11, "https://youtu.be/"),
+                            generate_url(14, "https://www.amazon.com/gp/customer-reviews/"),
+                            generate_url(20, "https://www.tiktok.com/@reussironly/video/"),
+                            ])
 
-    except subprocess.CalledProcessError as e:
+        # Mutate the URL
+        type_mutation, mutated_url = mutate_url(url)
+        
+        print(f"Iter : {i}")
+        
+        message = f"No mutated url : {url} [{type_mutation}]" 
+        print(message) 
+        f.write(message)
+            
+        try:
+            output = subprocess.check_output(COMMAND.format(
+                mutated_url), shell=True, stderr=subprocess.STDOUT)
+            
+            message = f"Command succeeded with input: {mutated_url}\n"
+            print(message)
+            # print(output)
 
-        print(f"Command failed with input: {mutated_url}")
-        print(f"{e.output}\n")
+        except subprocess.CalledProcessError as e:
+            
+            message = f"Command succeeded with input: {mutated_url}\n{e.output}\n"
+            print(message)
+            
+        f.write(message + "\n")
