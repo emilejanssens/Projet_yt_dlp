@@ -38,4 +38,4 @@ Pour lancer les tests unitaires :
 python test_unit.py
 ```
 
-Ces commandes lanceront les différents tests et affichera les résultats dans la console.
+Ces commandes lanceront les différents tests et affichera les résultats dans la console (ou dans un fichier log pour le fuzzing).
