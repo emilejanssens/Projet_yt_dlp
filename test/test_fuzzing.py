@@ -17,7 +17,7 @@ def generate_url(id_size, str_url):
     an random url (str)
     """
     # Generate a random YouTube video ID
-    video_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(id_size))
+    video_id = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(id_size))
     
     return str_url + video_id
     
