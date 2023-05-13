@@ -1,6 +1,7 @@
 import subprocess
 import random
 import string
+import time
 
 # Number of iterations
 num_iter = 100
@@ -72,6 +73,8 @@ def mutate_url(url):
 
 COMMAND = "yt-dlp {} -P ./trash"
 
+start_time = time.time()
+
 with open('logs.txt', 'a') as f:
     for i in range(num_iter):
         
@@ -109,3 +112,7 @@ with open('logs.txt', 'a') as f:
             print(message)
             
         f.write(message + "\n")
+        
+    end_time = time.time()
+    
+    print(f"Total time : {end_time - start_time} seconds")
